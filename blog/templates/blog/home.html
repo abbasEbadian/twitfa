@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load octicons%}
+{% block top %}
+<div class="container">
+  <a class="btn btn-success w-100 mb-5 mr-4" href="{% url 'app_blog:new_post'%}">
+    <span class="px-2">پست جدید</span>{% octicon "plus" class="icon-white" %}
+  </a>
+</div>
+{% endblock top %}
+
+{% block userpage %}
+{% if special  %}
+    <legend class="text-right mb-4"><span >کاربر</span><span class="mx-2"> {{username}} </span>(پستها :{{page_obj.paginator.count}})</legend> 
+{% endif %}
+{% endblock userpage %}
+
+{% block content%}
+  {% for post in posts %}
+    {% include 'snippets/post-layout.html' %}
+  {% empty %}
+    <h3 class="text-center mt-5">هنوز پستی ندارید.</h3>
+  {% endfor %}
+{% if is_paginated  %}
+    <div class=" mt-4 text-center">
+
+      {% if page_obj.has_previous %}
+        <a class="btn btn-outline-info" href="?page=1">اولین</a>
+        <a class="btn btn-outline-info" href="?page={{page_obj.previous_page_number}}">قبلی</a>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% ifequal page_obj.number  num %}
+          <a class="btn btn-info" href= "?page={{num}}" >{{num}}</a>
+        {% else %}
+          <a class="btn btn-outline-info" href="?page={{num}}">{{num}}</a>
+        {% endifequal %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a class="btn btn-outline-info" href="?page={{page_obj.next_page_number}}">بعدی</a>
+        <a class="btn btn-outline-info" href="?page={{page_obj.paginator.num_pages}}">آخرین</a>
+      {% endif %}
+
+  </div>
+{% endif %}
+
+
+
+{% endblock content%}

@@ -1,0 +1,31 @@
+{% load static %}
+<header class="site-header">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" style="direction:rtl;">
+    <div class="container">
+      <a class="navbar-brand mr-4" href="#">
+        <img width="32px" src="{% static 'twitfa/main-icon.png' %}" alt="site-icon">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ml-auto mr-2">
+          <a class="nav-item nav-link "href="{% url 'redirect_home' %}">تایم لاین</a>
+          <a class="nav-item nav-link "href="{% url 'app_blog:user_posts' user.username %}">پست های من</a>
+          <a class="nav-item nav-link "href="#">درباره ما</a>
+        </div>
+
+        <div class="navbar-nav">
+          {% if user.is_authenticated%}
+          <a class="nav-item nav-link" href="{% url 'app_users:profile' %}">پروفایل</a>
+          <a class="nav-item nav-link" href="{% url 'app_users:logout'%}">خروج</a>
+          {% else %}
+          <a class="nav-item nav-link" href="{% url 'app_users:login'%}">ورود</a>
+          <a class="nav-item nav-link disabled mx-2" href="#"> / </a>
+          <a class="nav-item nav-link" href="{% url 'app_users:register' %}">ثبت نام</a>
+          {% endif%}
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

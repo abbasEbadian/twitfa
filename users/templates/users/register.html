@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags%}
+
+{% block content %}
+<form class="mb-5 mx-auto text-right" style="direction:ltr"  method="post">
+  {% csrf_token %}
+  {{ form|crispy }}
+  <div class="form-group">
+    
+    <button class="mt-5 btn btn-outline-info" style="width:150px"type="submit" name="button">ثبت نام</button>
+  </div>
+</form>
+<p class="text-right">حساب کاربری دارید؟   <a class="mr-2"href="#">وارد شوید</a></p>
+{% endblock content %}

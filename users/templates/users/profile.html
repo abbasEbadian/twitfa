@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container border">
+  <img width="160" class="rounded-circle mx-auto d-block" src="{{user.profile.avatar.url}}" alt="user-avatar"/>
+  <p class="display-4 text-center">{{user.username}}</p>
+  <p class="display-5 text-center">{{user.email}}</p>
+</div>
+{% endblock content %}
+{% block top%}
+<div class="container">
+  <a class="btn btn-outline-info w-100 mb-5"href="{% url 'app_users:profile_edit' %}">ویرایش</a>
+</div>
+{% endblock top%}

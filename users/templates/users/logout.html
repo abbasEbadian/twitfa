@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p >  <h3 class="text-right">از حساب خود خارج شدید.</h3></p>
+<p style="margin-top:60px" class="text-right"> بازگشت به صفحه اصلی   <a class="mr-2"href="{% url 'redirect_home' %}">خانه</a></p>
+<p class="text-right"> دوباره وارد شوید   <a class="mr-2"href="{% url 'app_users:login' %}">ورود</a></p>
+{% endblock content %}

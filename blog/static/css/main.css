@@ -1,0 +1,11 @@
+.icon-white{
+  fill:#87ce9e !important;
+}
+body{
+  background-color: '#819190';
+}
+.post-border{
+  border-width: thin;
+  
+  border-color: #666
+}

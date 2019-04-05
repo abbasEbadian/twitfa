@@ -1,0 +1,20 @@
+{% load octicons %}
+<section class="pt-3 media border rounded my-2" style="background:rgb(224,220,251)">
+  <img src="{{user.profile.avatar.url}}" class="align-self-start mr-3 rounded-circle" width="64"alt="...">
+  <section class="media-body text-right mr-4">
+    <small class="mt-0">{{post.date}}</small>
+
+    <p class="mt-0 border-bottom"><em>توسط</em>
+      <a class="mr-3"href="{% url 'app_blog:user_posts' post.user.username %}">{{post.user.username}}</a>
+      {% if post.user == user%}
+      <a class="mr-3"href="{% url 'app_blog:edit_post' post.id %}">{% octicon "pencil" height="20" %}</a></p>
+      {% endif %}
+    <p class=" post-border rounded mx-2 px-2 pb-3 pt-1">
+      {{post.content}}
+    </p>
+
+    <p class="mt-4 border-top"><em>پسند</em><a class="mr-3"href="/">{{post.likes}}</a></p>
+
+  </section>
+
+</section>

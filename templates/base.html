@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <!-- Bootstrap CSS  -->
+    {% include 'bootstrap_links/css-link.html' %}
+    <link rel="stylesheet"  type="text/css" href="{% static 'css/main.css' %}">
+    <title>{% block title%}Home{% endblock title%}</title>
+  </head>
+  <body>
+    {% include 'snippets/navbar.html'%}
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+      <strong class="text-right">{{message}}</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span class="text-left"aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+    <main role="main" class="container" style="margin-top:80px;">
+      <div class="row">
+        <div class="col-md-8">
+          {% block userpage %}{% endblock userpage %}
+          {% block content %}{% endblock %}
+        </div>
+        <div class="col-md-4">
+          {% block top%}
+          {% endblock top%}
+          <div class="content-section">
+            <h3>Our Sidebar</h3>
+            <p class='text-muted'>You can put any information here you'd like.
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-light">Latest Posts</li>
+                <li class="list-group-item list-group-item-light">Announcements</li>
+                <li class="list-group-item list-group-item-light">Calendars</li>
+                <li class="list-group-item list-group-item-light">etc</li>
+              </ul>
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+    </body>
+</html>

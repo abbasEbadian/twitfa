@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content%}
+<h4 class="text-right mb-5">ویرایش  پست</h4>
+<form class=" text-right" method="post">
+  {% csrf_token %}
+  {{ form|crispy }}
+  <div class="form-group mt-2">
+    <button class="btn btn-success w-25 float-right"type="submit" name="button">ویرایش</button>
+    <a class="btn btn-outline-danger mx-2" href="{% url 'app_blog:delete_post' form.instance.id %}">حذف پست</a>
+  </div>
+</form>
+{% endblock content%}

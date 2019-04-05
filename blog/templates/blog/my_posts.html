@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content%}
+{% block top%}
+<h4 class="text-center mb-5">پست های من</h4>
+{% endblock top%}
+
+  {% for post in post_list %}
+    {% include 'snippets/post-layout.html' %}
+
+  {% endfor %}
+{% endblock content%}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content%}
+<h4 class="text-right mb-5">پست جدید ....</h4>
+<form class=" text-right" method="post">
+  {% csrf_token %}
+  {{ form|crispy }}
+  <div class="form-group mt-2">
+    <button class="btn btn-success w-25 float-right"type="submit" name="button">پست</button>
+  </div>
+</form>
+{% endblock content%}
