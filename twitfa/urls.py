@@ -19,11 +19,19 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic.base import RedirectView
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('users.urls')),
     path('posts/', include('blog.urls')),
-    path('', RedirectView.as_view(pattern_name='app_blog:home'),name='redirect_home' )
+    path('', RedirectView.as_view(pattern_name='app_blog:home'),name='redirect_home' ),
+    path('password-reset-confirm/<uidb64>/<token>/',RedirectView.as_view(pattern_name='app_users:password_reset_confirm'),
+         name='password_reset_confirm'),
+    path('password-reset/done/',RedirectView.as_view(pattern_name='app_users:password_reset_done'),
+         name='password_reset_done'),
+    path('password-reset',RedirectView.as_view(
+        pattern_name='app_users:password_reset'),
+        name='password_reset'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
