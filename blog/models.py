@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.shortcuts import reverse
 # Create your models here.
 
 
@@ -18,3 +19,7 @@ class Post(models.Model):
             else:
                 return 'th'
         return f"{self.user.username}'s {self.id}{get_end(self.id)} Post."
+
+
+    def get_absolute_url(self):
+        return reverse('app_blog:user_posts', kwargs={'username':self.user.username})

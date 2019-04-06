@@ -4,6 +4,6 @@
     {% csrf_token %}
     <h2 class="text-right mb-5">مطمئن هستید ؟</h2>
     <button class="btn btn-outline-danger w-25"type="submit" name="button">بله</button>
-    <a class="btn btn-outline-secondary w-25" href="{% url 'app_blog:my_posts' %}">لغو</a>
+    <a class="btn btn-outline-secondary w-25" href="{% url 'app_blog:user_posts' post.user.username %}">لغو</a>
   </form>
 {% endblock content%}

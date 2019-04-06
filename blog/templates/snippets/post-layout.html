@@ -13,7 +13,13 @@
       {{post.content}}
     </p>
 
-    <p class="mt-4 border-top"><em>پسند</em><a class="mr-3"href="/">{{post.likes}}</a></p>
+    <p class="mt-4 border-top">
+      {% octicon "heart" height="24" class="icon-heart" %}
+      <button type="button"
+      class="like btn btn-muted mr-3 "
+      onclick="this.innerHTML=Number(this.innerHTML)+1">
+        {{post.likes}}</button>
+      </p>
 
   </section>
 

@@ -42,7 +42,7 @@ class NewPostView(LoginRequiredMixin, CreateView):
     model = Post
     form_class = PostForm
     template_name = 'blog/new_post.html'
-    success_url =  reverse_lazy('app_blog:my_posts')
+    #success_url =  reverse_lazy('app_blog:user_posts',{})
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -53,7 +53,7 @@ class EditPostView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     fields = ['content']
     template_name = 'blog/edit_post.html'
-    success_url = reverse_lazy('app_blog:my_posts')
+    #success_url = reverse_lazy('app_blog:user_posts')
     def form_valid(self, form):
         form.instance.user = self.request.user
         form.instance.last_modified_date = timezone.now()
@@ -70,10 +70,12 @@ class EditPostView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     template_name = "blog/delete_post.html"
-    success_url = reverse_lazy('app_blog:my_posts')
     def form_valid(self, form):
         messages.success(self.request, 'پست حذف شد.')
         return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('app_blog:user_posts', kwargs={'username':self.request.user.username})
 
 
     def test_func(self):
